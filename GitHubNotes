@@ -11,9 +11,9 @@ To receive all files;
 	4. download files -> git pull origin master
 
 To commit file changes;
-	1. git add .
-	2. git commit -m "message here"
-	3, git push origin master
+	1. git add .  (adds all files to list of files to be commited)
+	2. git commit -m "message here" (generates a message)
+	3, git push origin master (updates repro)
 
 
 "git remote -v" this will show the status of the push and fetch urls
