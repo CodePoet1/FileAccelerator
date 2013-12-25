@@ -1,0 +1,41 @@
+FileAccelerator
+
+25/12/2013
+Need to set up environment.  Config file is ~/FileAccelerator/.git/config
+url = https://CodePoet1@github.com/CodePoet1/FileAccelerator.git - this will prompt for password when commiting
+
+To receive all files;
+	1. set up directory on linux -> mkdir ~/Projects/FileAccelerator
+	2. initialise .git/config -> git init
+	3. add remote link to github (adds entry to .git/config) -> git remote add origin https://CodePoet1@github.com/CodePoer1/FileAccelerator.git
+	4. download files -> git pull origin master
+
+
+
+"git remote -v" this will show the status of the push and fetch urls
+
+Step 1
+mkdir ~/FileAccelerator
+# Creates a directory for your project called "FileAccelerator" in your user directory
+
+cd ~/FileAccelerator
+# Changes the current working directory to your newly created directory
+
+git init
+# Sets up the necessary Git files
+# Initialized empty Git repository in /Users/tony/FileAccelerator/.git/
+
+touch README
+# Creates a file called "README" in your FileAccelerator directory
+
+git add README
+# Stages your README file, adding it to the list of files to be committed
+
+git commit -m 'first commit'
+# Commits your files, adding the message "first commit"
+
+git remote add origin https://CodePoet1@github.com/CodePoet1/FileAccelerator.git
+# Creates a remote named "origin" pointing at your GitHub repository
+
+git push origin master
+# Sends your commits in the "master" branch to GitHub
