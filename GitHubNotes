@@ -10,6 +10,10 @@ To receive all files;
 	3. add remote link to github (adds entry to .git/config) -> git remote add origin https://CodePoet1@github.com/CodePoer1/FileAccelerator.git
 	4. download files -> git pull origin master
 
+To commit file changes;
+	1. git add .
+	2. git commit -m "message here"
+	3, git push origin master
 
 
 "git remote -v" this will show the status of the push and fetch urls
