@@ -6,7 +6,7 @@
  *                                                                  * 
  ********************************************************************/
 
-
+#include "include/setup.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -26,6 +26,7 @@ int main(int ac, char *av[])
   char *msg;
   struct sockaddr_in saddr;
   int n;
+
 
   if(ac != 4){
     fprintf(stderr, "Usage: dgsend host port 'message'\n");

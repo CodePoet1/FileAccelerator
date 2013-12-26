@@ -51,3 +51,5 @@ Files;
 	The following are released under GPL
 	
 	makefile - various make and clean commands for this project
+
+	setup/setup.h setup.c - reads config file and updates ip address etc
