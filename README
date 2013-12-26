@@ -2,3 +2,52 @@ FileAccelerator
 CodePoet1
 Created 25/12/13
 
+The purpose of this project is to create a program to send large media files
+(2GB) over a UDP/IP network.  Tests have shown that when using FTP methods,
+the speed of transfer can be painfully slow due to the fact that FTP uses
+TCP and therefore for line speeds in excess of 400Mb/s we tend to be limited
+by the protocol speed, and significantly increasing the line speed has little 
+affect (assuming only one host is sending data on the line at a time).
+
+Also it is a training aid to teach me how UDP/Ip networks work and how to program
+for them on a Linux/GNU server.
+
+I propose to use UDP/IP.  Assumptions;
+       1. link is over Ethernet
+       2. link is point to point therefore has very low packet loss
+       3. Tx and Rx servers are VM's (therefore cannot access low level etherenet
+          signalling information such as collision detect etc)
+       4. Using Wireshark Network and Protocol Analyser V1.2.7
+       5. Using Ubuntu-10
+       6. gcc version 4.4.3
+
+
+Method is as follows;
+
+       1.  Generate a CRC for the entire media file (used at Rx end for assembly)
+       2.  Fragment the media file into UDP packets
+       3.  Count the number of UDP packets and notify Rx of how many packets to expect
+       4.  Each UDP packet will have a time stamp and sequential packet number and CRC
+       5.  Send all UDP packets as qickly as possible to Rx (assume some loss)
+       6.  Rx server counts number of complete verified UDP packets and requests resend 
+           of missing packets from Tx
+       7.  Tx resends missing packets
+       8.  6 & 7 are continued until all packets are sent
+       9.  Rx assembles all UDP's into a file and verifies CRC
+       10. If CRC is correct then Rx sends message to Tx advising file reception ok
+       11. If CRC is incorrect Rx sends message to Tx advising file is in error and abort
+
+Files;
+	The following are based on "Understanding Unix/Linux Programming - A Guide to
+	Theory and Practice by Bruce Molay" and are for reference only, they should not be
+	copied and are not for free distribution.  It's a very good book and I thoroughly
+	recommend it.
+
+	dgsend.c - basis of a Tx/UDP engine
+	dgrecv.c - basis of Rx.UDP engine
+	dgram.c  - library files for dgsend.c and dgrecv.c
+
+	
+	The following are released under GPL
+	
+	makefile - various make and clean commands for this project
