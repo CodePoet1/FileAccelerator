@@ -44,9 +44,6 @@ int main()
   }
 
 
- 
-
-
 
  end:
   delete ConfigFile;
