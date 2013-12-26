@@ -1,0 +1,18 @@
+############################################################
+# Configuration file for FileAccelerator                   #
+#                                                          #
+# File format must be adhered to as there is no checking in#
+# code.                                                    #
+#                                                          #
+# Format is -                                              #
+# send ip address                                          #
+# send ip port                                             #
+# receive ip address                                       #
+# receive ip port                                          #
+#                                                          #
+############################################################
+127.0.0.1
+4444
+127.0.0.2
+4445
+########### end of config file ############
