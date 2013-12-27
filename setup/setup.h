@@ -34,10 +34,20 @@ class SETUP{
 
   string* mGetFileName(void);
   int mInitialise(void);
-  void mSetSrcIpAddress(string SrcIpAddress){strSrcIpAddress = SrcIpAddress;}
-  void mSetSrcPortAddress(string SrcPortAddress){strSrcPortAddress = SrcPortAddress;}
-  void mSetDstIpAddress(string DstIpAddress){strDstIpAddress = DstIpAddress;}
-  void mSetDstPortAddress(string DstPortAddress){strDstPortAddress = DstPortAddress;}
+  
+  void mSetSrcIpAddress(string SrcIpAddress)	\
+  {strSrcIpAddress = SrcIpAddress;}
+  
+  void mSetSrcPortAddress(string SrcPortAddress)\
+  {strSrcPortAddress = SrcPortAddress;}
+  
+  void mSetDstIpAddress(string DstIpAddress)\
+  {strDstIpAddress = DstIpAddress;}
+  
+  void mSetDstPortAddress(string DstPortAddress)\
+  {strDstPortAddress = DstPortAddress;}
+  
+
   ~SETUP(void);
 
 private:
