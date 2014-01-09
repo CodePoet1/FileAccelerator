@@ -5,12 +5,16 @@
 # code.                                                    #
 #                                                          #
 # Format is -                                              #
+# version (e.g 1.01)                                       #
+# date (e.g 4/1/14)                                        #
 # send ip address                                          #
 # send ip port                                             #
 # receive ip address                                       #
 # receive ip port                                          #
 #                                                          #
 ############################################################
+1.01
+4/1/14
 127.0.0.1
 4444
 127.0.0.2

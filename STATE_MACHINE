@@ -1,0 +1,6 @@
+FileAccelerator
+CodePoet1
+Created 9/1/14
+
+Two distinct state machines exist, one for packet Rx, the second for packet TX.
+

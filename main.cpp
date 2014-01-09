@@ -40,22 +40,23 @@ int main(int argc, char *argv[])
   cout << "* Welcome to FileAccelerator -- 2013 *" << endl;
   cout << "* Copyright TonyOrme 2013            *" << endl;
   cout << "* GPL                                *" << endl;
+  cout << "*                                    *" << endl;
   cout << "**************************************" << endl << endl; 
 
   if(argc<2){
-    cout << "ERROR - specifgy config file in command line " << endl;
+    cout << "ERROR - specify config file in command line " << endl;
+    cout << "        e.g \"./fa config\" " << endl;
     return 0;
   }
 
   const char* configFile;
   configFile = argv[1];
 
-  //  SETUP* ConfigFile = (SETUP*) new SETUP("/home/tony/Projects/FileAccelerator/config");
-
   SETUP* ConfigFile = (SETUP*) new SETUP(configFile);
 
   if(!ConfigFile->mInitialise()){
-    cout << "Error, could not open config file -> " << ConfigFile->mGetFileName() << endl;
+    cout << "Error, could not open config file -> " \
+	 << ConfigFile->mGetFileName() << endl;
     goto end;
   }
 

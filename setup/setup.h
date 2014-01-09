@@ -33,8 +33,16 @@ class SETUP{
   SETUP(const char* FileName);
 
   string* mGetFileName(void);
+  string* mGetFileVersion(void);
+
   int mInitialise(void);
   
+  void mSetFileVersion(string FileVersion) \
+  {strFileVersion = FileVersion;}
+
+  void mSetDate(string FileDate) \
+  {strDate = FileDate;}
+
   void mSetSrcIpAddress(string SrcIpAddress)	\
   {strSrcIpAddress = SrcIpAddress;}
   
@@ -52,6 +60,8 @@ class SETUP{
 
 private:
   string mFileName;
+  string strFileVersion;
+  string strDate;
   string strSrcIpAddress;
   string strSrcPortAddress;
   string strDstIpAddress;

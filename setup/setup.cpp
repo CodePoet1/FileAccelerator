@@ -53,21 +53,28 @@ int SETUP::mInitialise(void){
 
     if(myfile.is_open()){
 
-      cout << "Opening file -> " << mFileName << endl;
+      cout << "Opening file -> " << mFileName << ",";
       while (! myfile.eof()){
 	myfile.getline (buffer,256);
 	if((buffer[0]!='#')&&(buffer[0]!='\0')){
 	  switch(line_count++){ 
 	  case 0:
-	    mSetSrcIpAddress(buffer);
+	    mSetFileVersion(buffer);
+	    cout << " version -> " << mGetFileVersion()->c_str() << endl;
 	    break;
 	  case 1:
-	    mSetSrcPortAddress(buffer);
+	    mSetDate(buffer);
 	    break;
 	  case 2:
-	    mSetDstIpAddress(buffer);
+	    mSetSrcIpAddress(buffer);
 	    break;
 	  case 3:
+	    mSetSrcPortAddress(buffer);
+	    break;
+	  case 4:
+	    mSetDstIpAddress(buffer);
+	    break;
+	  case 5:
 	    mSetDstPortAddress(buffer);
 	    break;
 	  }
@@ -88,8 +95,11 @@ int SETUP::mInitialise(void){
 
 
 string* SETUP::mGetFileName(void){
-  
-  return &mFileName;
+   return &mFileName;
+}
+
+string* SETUP::mGetFileVersion(void){
+  return &strFileVersion;
 }
 
 
