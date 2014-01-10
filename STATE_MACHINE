@@ -1,6 +1,57 @@
-FileAccelerator
-CodePoet1
-Created 9/1/14
+######################################################
+# FileAccelerator
+# CodePoet1
+# Created 9/1/14
+# File - STATE_MACHINE
+#
+# Document to describe the state machines
+#
+#####################################################
 
 Two distinct state machines exist, one for packet Rx, the second for packet TX.
+
+
+	 Server_A Local IpAddress   10.5.1.12				Server_B Local IpAddress   10.1.1.12
+		  TxFileListenPortNumber 3333					 TxFileListenPortNumber 3333
+		  RxFileListenPortNumber 4444					 RxFileListenPortNumber 4444
+	#####################################				#####################################
+	#                                   #                           #                                   #
+	# Transmit File to Server_B         #                           # Recieve File from Server_A        #
+	# Send file data on                 # -------------------------># Listen for file data on           #
+	# strTxEngineTxIpAddress- 10.1.1.12 #                           # strRxEngineRxPortNumber  - 4444   #              
+        # strTxEngineTxPortNum  - 4444      #                           #                                   #
+	#                                   #				#				    #
+	# Listen for ack/nak/resend         #				# Send ack/nak/resend on            #
+	# strTxEngineRxPortNum  - 3333      #<--------------------------# strRxEngineTxIpAddress- 10.5.1.12 #
+	#                                   #  				# strRxEngineTxPortNum  - 3333      #
+	#                                   #                           #                                   #
+	#-----------------------------------# 				#-----------------------------------#
+	#                                   #                           #                                   #
+y  	#                                   #                           #                                   #
+	#####################################				#####################################
+
+RxEngine_RecieveFile - listen on port RxInput
+
+		|					SIGNAL
+		|
+STATE		|	PackRxedHead	PackRxedData	PackRxedTail	PackError	PackTimeout	PackLostData	PackLostTail 	PackOk
+------------------------------------------------------------------------------------------------------------------------------------------------------
+		|
+IDLE		|	PACK_RX_HEAD
+		|
+PACK_RX_HEAD	|	PACK_RX_DATA							PACK_ERROR
+		|
+PACK_RX_DATA	|			PACK_RX_TAIL					PACK_ERROR
+		|
+PACK_RX_TAIL	|					PACK_CHECK			PACK_ERROR
+		|
+PACK_CHECK	|							PACK_ERROR	PACK_ERROR	GET_LOST_DATA_N			IDLE(File recieved ok)
+		|
+GET_LOST_DATA_N	|			GET_LOST_TAIL_N					PACK_ERROR
+		|
+GET_LOST_TAIL_N	|					PACK_CHECK			PACK_ERROR					
+		|	
+PACK_ERROR	|	IDLE		IDLE		IDLE		IDLE		IDLE		IDLE		IDLE		IDLE
+
+
 
