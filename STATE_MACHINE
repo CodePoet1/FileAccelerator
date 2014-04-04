@@ -27,8 +27,23 @@ Two distinct state machines exist, one for packet Rx, the second for packet TX.
 	#                                   #                           #                                   #
 	#-----------------------------------# 				#-----------------------------------#
 	#                                   #                           #                                   #
-y  	#                                   #                           #                                   #
+  	#                                   #                           #                                   #
 	#####################################				#####################################
+
+
+The protocol sequence is;
+    1.  Tx engine sends INIT_PAK command including file length, and file crc value
+    2.  Rx engine recieves the INIT_PAK engine and resets the Rx engine
+    3.  Rx engine sends SEND_PAK to Tx engine
+    4.  Tx engine sends n_packets of DATA_PAK (floods network)
+    5.  Rx engine calculates number of packets received, works out which ones are either missing or have CRC errors
+    6.  Continue items 4 and 5 until Tx engine sends LAST_PAK
+    7.  Rx engine sends REQ_LOST_PAK, then TX engine sends n_packets of DATA_PAK
+    8.  When complete Tx engine sends LAST_PAK
+    9.  If Rx engine has recieved all packets and everything is ok, it sends ALL_PAKS_OK back to Tx
+    10. Tx engine closes
+    11. RX engine closes
+
 
 RxEngine_RecieveFile - listen on port RxInput
 
